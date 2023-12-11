@@ -1,0 +1,250 @@
+# Q no.1)
+    # What is the primary goal of Object-Oriented Programming (OOP)?
+#ans) the primary goal of (oops) are Adaptability, Reuseabilit and Robustness
+
+# Q no.2)
+    # What is an object in Python?
+# ans) objects in python are variables that contain data and functions which can be used to manipulat data
+
+# Q no. 3)
+    #  What is a class in Python?
+# ans) A class is a code template for creating objects
+
+# Q no. 4)
+    #  What are attributes and methods in a class?
+# ans) any variable that is bound in a class is a class attrribute and any function define within a class is method
+
+# Q no. 5)
+    #  What is the difference between class variables and instance variables in Python?
+# ans) any class objects can access class variables where instance variables can only be accessed by the associated object
+
+# Q no. 6)
+    # What is the purpose of the self parameter in Python class methods?
+# ans) self is used to return the instance of the class     
+ 
+
+
+# Q no. 7)
+#class (Book)
+class Book:
+    def __init__(self, author, title, ISBN_number , publication_year, available_copies):
+        self.author= author
+        self.title= title
+        self.ISBN_number= ISBN_number
+        self.publication_year= publication_year
+        self.available_copies= available_copies
+        
+   #checking out a book
+    def check_out(self):
+        if self.available_copies > 0:
+            self.available_copies-= 1
+            print(f"your book '{self.title}' have been CheckedOut successfly" )
+        else:
+            print(f"sorry, the '{self.title}' is out of stock")
+            
+    #returning the book    
+    def return_book(self):
+        self.available_copies+=1
+        print(f"your return of book '{self.title}' is successful.")
+   
+  #for displaying book info
+    def display_book_info(self):
+        print(f"Title: {self.title}")
+        print(f"Copies available for sale: {self.available_copies}")
+        print(f"Author of the book: {self.author}")
+        print(f"Year of publishing: {self.publication_year}")
+        
+         
+    #creating a book onject
+book1= Book("mohsin khan","my journy", 1-2-30-56, 2023, 100 )
+
+#displaying book info
+book1.display_book_info()  
+
+#checking out a book
+book1.check_out()
+
+#updated book info after checkout            
+book1.display_book_info()  
+
+
+
+
+
+# Q no. 8)
+#ticket class 
+class ticket:
+    def __init__(self, ticket_id, event_name, event_date, venue, seat_number, price):
+        self.ticket_id= ticket_id
+        self.event_name= event_name
+        self.event_date= event_date
+        self.venue= venue
+        self.seat_number= seat_number
+        self.price= price
+        self.is_reserved= False 
+
+#for reserving ticket
+    def reserve_ticket(self):
+        if not self.is_reserved:
+            self.is_reserved= True
+            print(f"the ticket for '{self.event_name}' dated '{self.event_date}' is now reserved")
+            print(f"your seat number is '{self.seat_number}'")
+        else:
+            print(f"the ticket for '{self.event_name}' dated '{self.event_date}' is aleady resrved")
+            
+# cancelling reservation        
+    def cancel_reservation(self):
+        if self.is_reserved:
+            self.is_reserved= False
+            print(f"the ticket for '{self.event_name}' dated '{self.event_date}' has been cancelled")
+        else: 
+            print(f"the ticket '{self.event_name}' dated '{self.event_date}' is not reserved")
+            
+#for displaying ticket info            
+    def display_ticket_info(self):  
+        print(f"ticket_id: {self.ticket_id}")
+        print(f"event_name: {self.event_name}")
+        print(f"event_date: {self.event_date}")
+        print(f"the venue is: {self.venue}")
+        print(f"seat_number: {self.seat_number}")
+        print(f"the price of the ticket is: {self.price}")
+        print(f"Reservation Status: {'Reserved' if self.is_reserved else 'Not Reserved'}")
+        
+
+#example usage
+ticket1=ticket(1, "new year party", "31-12-2023","nagpur staduim", "b-143",50.00 )
+
+#for reserving ticket
+ticket1.reserve_ticket()
+
+#for cancelling reservation
+ticket1.cancel_reservation()
+
+#for updated info
+ticket1.display_ticket_info()
+
+
+
+
+
+# Q no. 9) student class
+class Student:
+    def __init__(self, name, age, grade, student_id):
+        self.name = name
+        self.age = age
+        self.grade = grade
+        self.student_id = student_id
+        self.attendance = {} 
+
+  #for updating attendence
+    def update_attendance(self, date, status):
+        
+        if date in self.attendance:
+            print(f"Attendance for {self.name} on {date} is alrrady up to date.")
+        else:
+            self.attendance[date] = status
+            print(f"Attendance for {self.name} on {date} has been updated to {status}.")
+            
+#for getting updated attendence
+    def get_attendance(self):
+        return self.attendance
+    
+#getting average of attendence
+    def get_average_attendance(self):
+        if not self.attendance:
+            return 0  
+
+        total_days = len(self.attendance)
+        present_days = list(self.attendance.values()).count('present')
+
+        average_attendance = (present_days / total_days) * 100
+        return round(average_attendance, 2)  # Round to two decimal places
+
+# for using
+student1 = Student(name="John Doe", age=15, grade="10th", student_id="S001")
+
+# for upating attendence
+student1.update_attendance("2023-01-01", "present")
+student1.update_attendance("2023-01-02", "absent")
+student1.update_attendance("2023-01-03", "present")
+
+# for Getting attendance
+print("Attendance Records:", student1.get_attendance())
+
+#for  Getting average of attendance
+average_attendance = student1.get_average_attendance()
+print(f"Average Attendance: {average_attendance}%")
+
+
+
+
+# Q no.10) shopping cart
+
+class shopping_cart:
+    def __init__(self):
+        self.items=[]
+    
+    def add_item(self, item):
+        self.items.append(item)
+        print(f"'{item}' added  to cart")
+        
+    def remove_item(self, item):
+        if item in self.items:
+            self.items.remove(item)
+            print(f"'{item}' removed from the list")
+        else:
+            print(f" nothing to remove!")
+    def view_cart(self):
+        if not self.items:
+            print(f"your cart is empty!")
+        else:    
+            return self.items
+    def clear_cart(self):
+        self.items=[]
+        print(f"cart cleared")
+        
+#useage example                                       
+ cart=shopping_cart()                                           
+                                              
+
+#adding items 
+cart.add_item("purepet")                   
+cart.add_item("waterbottle")               
+cart.add_item("chair")
+
+
+
+ #view cart after update 
+ cart.view_cart() 
+        
+
+#to clear cart
+cart.clear_cart()
+
+ #removing an item from the cart 
+  cart.remove_item("purepet") 
+     
+   
+        
+    
+  
+   
+        
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
